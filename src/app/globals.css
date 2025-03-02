@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html[dir="rtl"] {
+  text-align: right;
+}
+
+html,
+body {
+  @apply antialiased bg-mud-light;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-arabic);
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+}
+
+/* Swiper Styles */
+.gents-swiper {
+  padding: 1rem !important;
+  padding-bottom: 3rem !important;
+  padding-top: 0 !important;
+}
+
+.gents-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.gents-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #C19A5B !important;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.gents-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 30px;
+  border-radius: 6px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #1a1a1a !important;
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  background: #c4a484 !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #1a1a1a !important;
+  opacity: 1;
+}
+
+.swiper-rtl .swiper-button-next {
+  left: 10px;
+  right: auto;
+}
+
+.swiper-rtl .swiper-button-prev {
+  right: 10px;
+  left: auto;
+}
+
+/* Custom Gents Perfumes Navigation */
+.gents-swiper .swiper-button-next,
+.gents-swiper .swiper-button-prev {
+  background: rgba(193, 154, 91, 0.9);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white !important;
+  transform: translateY(-50%);
+}
+
+.gents-swiper .swiper-button-next {
+  left: -25px;
+}
+
+.gents-swiper .swiper-button-prev {
+  right: -25px;
+}
+
+.gents-swiper .swiper-button-next:after,
+.gents-swiper .swiper-button-prev:after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.gents-swiper .swiper-button-next:hover,
+.gents-swiper .swiper-button-prev:hover {
+  background: rgba(193, 154, 91, 1);
+}
+
+@media (max-width: 768px) {
+  .gents-swiper .swiper-button-next,
+  .gents-swiper .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* Banner Slider Styles */
+.homeBannerSection .swiper-button-next,
+.homeBannerSection .swiper-button-prev {
+  color: #C19A5B;
+  background: rgba(255, 255, 255, 0.8);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.homeBannerSection .swiper-button-next:after,
+.homeBannerSection .swiper-button-prev:after {
+  font-size: 20px;
+}
+
+.homeBannerSection .container {
+  @apply max-w-7xl mx-auto px-4;
+}
