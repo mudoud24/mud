@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'ReadexPro-Regular';
+  src: url('/fonts/ReadexPro-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ReadexPro-SemiBold';
+  src: url('/fonts/ReadexPro-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-bold: "ReadexPro-SemiBold", Helvetica, Arial, sans-serif;
+  --font-medium: "ReadexPro-SemiBold", Helvetica, Arial, sans-serif;
+  --font-regular: "ReadexPro-Regular", Helvetica, Arial, sans-serif;
+}
+
 html[dir="rtl"] {
   text-align: right;
 }
@@ -12,6 +34,18 @@ body {
 }
 
 @layer base {
+  html {
+    font-family: var(--font-regular);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-bold {
+    font-family: var(--font-bold);
+  }
+
+  .font-medium {
+    font-family: var(--font-medium);
+  }
+
   body {
     font-family: var(--font-arabic);
   }
@@ -131,4 +165,16 @@ body {
 
 .homeBannerSection .container {
   @apply max-w-7xl mx-auto px-4;
+}
+
+.font-regular {
+  font-family: var(--font-regular);
+}
+
+.font-medium {
+  font-family: var(--font-medium);
+}
+
+.font-bold {
+  font-family: var(--font-bold);
 }

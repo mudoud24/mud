@@ -1,190 +1,189 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ProductCard from '../../components/ProductCard'
-import { FaFilter } from 'react-icons/fa'
+import Link from 'next/link'
 
-const products = [
-  // Men's Perfumes
+const categories = [
   {
-    id: 'mp1',
-    name: 'الفريد 100 مل',
-    price: 119,
-    originalPrice: 238,
-    image: '/products/alfareed.webp',
-    category: 'mens',
-    discount: 50
+    id: 'perfumes',
+    name: 'العطور'
   },
   {
-    id: 'mp2',
-    name: 'أميري 75 مل',
-    price: 86,
-    originalPrice: 172,
-    image: '/products/amiri.webp',
-    category: 'mens',
-    discount: 50
+    id: 'oils',
+    name: 'الزيوت'
   },
   {
-    id: 'mp3',
-    name: 'سلطاني 100 مل',
-    price: 157.50,
-    originalPrice: 315,
-    image: '/products/sultani.webp',
-    category: 'mens',
-    discount: 50
+    id: 'incense',
+    name: 'معطرات اعواد'
   },
   {
-    id: 'mp4',
-    name: 'عود ملكي 100 مل',
-    price: 368,
-    originalPrice: 736,
-    image: '/products/royal-oud.webp',
-    category: 'mens',
-    discount: 50
+    id: 'room-spray',
+    name: 'معطرات الغرفة'
   },
   {
-    id: 'mp5',
-    name: 'مسك اسود 100 مل',
-    price: 299,
-    originalPrice: 598,
-    image: '/products/black-musk.webp',
-    category: 'mens',
-    discount: 50
-  },
-  // Women's Perfumes
-  {
-    id: 'wp1',
-    name: 'مسك الورد 100 مل',
-    price: 129,
-    originalPrice: 258,
-    image: '/products/rose-musk.webp',
-    category: 'womens',
-    discount: 50
+    id: 'car-perfumes',
+    name: 'معطرات السيارات'
   },
   {
-    id: 'wp2',
-    name: 'عطر الياسمين 75 مل',
-    price: 199,
-    originalPrice: 398,
-    image: '/products/jasmine.webp',
-    category: 'womens',
-    discount: 50
-  },
-  // Unisex Perfumes
-  {
-    id: 'up1',
-    name: 'عنبر خاص 100 مل',
-    price: 279,
-    originalPrice: 558,
-    image: '/products/special-amber.webp',
-    category: 'unisex',
-    discount: 50
+    id: 'skin-care',
+    name: 'العناية بالبشرة'
   },
   {
-    id: 'up2',
-    name: 'مسك البنفسج 100 مل',
-    price: 249,
-    originalPrice: 498,
-    image: '/products/violet-musk.webp',
-    category: 'unisex',
-    discount: 50
-  },
-  // Oud Oils
-  {
-    id: 'o1',
-    name: 'دهن عود ملكي',
-    price: 599,
-    originalPrice: 1198,
-    image: '/products/royal-oud-oil.webp',
-    category: 'oils',
-    discount: 50
+    id: 'body-mist',
+    name: 'معطر الجسم'
   },
   {
-    id: 'o2',
-    name: 'دهن عود هندي',
-    price: 499,
-    originalPrice: 998,
-    image: '/products/indian-oud-oil.webp',
-    category: 'oils',
-    discount: 50
+    id: 'diffuser',
+    name: 'المعطرات الكهربائية'
   }
 ]
 
-const categories = [
-  { id: 'all', name: 'جميع المنتجات' },
-  { id: 'mens', name: 'عطور رجالية' },
-  { id: 'womens', name: 'عطور نسائية' },
-  { id: 'unisex', name: 'عطور للجنسين' },
-  { id: 'oils', name: 'دهن عود' }
+const subCategories = [
+  { id: 'all', name: 'الكل' },
+  { id: 'men', name: 'رجالي' },
+  { id: 'women', name: 'نسائي' },
+  { id: 'unisex', name: 'للجنسين' }
 ]
 
-export default function ProductsPage() {
+const products = [
+  {
+    id: 'p1',
+    name: 'عطر المسك الأسود',
+    price: 299,
+    image: '/products/black-musk.webp',
+    category: 'perfumes',
+    subcategory: 'men'
+  },
+  {
+    id: 'p2',
+    name: 'عطر الورد الملكي',
+    price: 399,
+    image: '/products/rose.webp',
+    category: 'perfumes',
+    subcategory: 'women'
+  },
+  {
+    id: 'p3',
+    name: 'عود معطر للسيارة',
+    price: 49,
+    image: '/products/car-freshener.webp',
+    category: 'car-perfumes',
+    subcategory: 'unisex'
+  },
+  {
+    id: 'p4',
+    name: 'زيت العود الفاخر',
+    price: 599,
+    image: '/products/oud-oil.webp',
+    category: 'oils',
+    subcategory: 'men'
+  },
+  {
+    id: 'p5',
+    name: 'معطر غرفة الياسمين',
+    price: 159,
+    image: '/products/room-spray.webp',
+    category: 'room-spray',
+    subcategory: 'unisex'
+  },
+  // Add more test products for each category...
+]
+
+const ProductsPage = () => {
   const searchParams = useSearchParams()
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [showFilters, setShowFilters] = useState(false)
+  const currentCategory = searchParams.get('category')
+  const currentSubCategory = searchParams.get('subcategory') || 'all'
 
-  useEffect(() => {
-    const category = searchParams.get('category')
-    if (category) {
-      setSelectedCategory(category)
-    }
-  }, [searchParams])
-
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(p => p.category === selectedCategory)
-
-  // Add console log to debug
-  console.log('Category:', selectedCategory)
-  console.log('Filtered Products:', filteredProducts)
+  // Filter products based on selected category and subcategory
+  const filteredProducts = products.filter(product => {
+    const categoryMatch = !currentCategory || product.category === currentCategory
+    const subcategoryMatch = 
+      !currentSubCategory || 
+      currentSubCategory === 'all' || 
+      product.subcategory === currentSubCategory
+    
+    return categoryMatch && subcategoryMatch
+  })
 
   return (
-    <div className="py-16 px-4">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">منتجاتنا</h1>
-          <button 
-            onClick={() => setShowFilters(!showFilters)}
-            className="md:hidden bg-mud-primary text-white p-2 rounded-md"
-          >
-            <FaFilter />
-          </button>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Filters */}
-          <div className={`md:w-64 ${showFilters ? 'block' : 'hidden md:block'}`}>
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <h2 className="text-xl font-semibold mb-4">التصنيفات</h2>
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-3xl font-bold mb-8 text-right">المنتجات</h1>
+      
+      <div className="flex gap-8">
+        <div className="w-64 flex-shrink-0">
+          <div className="sticky top-4 space-y-8">
+            {/* Categories */}
+            <div>
+              <h2 className="text-lg font-bold mb-4 border-b pb-2 text-right">الفئات</h2>
               <div className="space-y-2">
-                {categories.map(cat => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`block w-full text-right py-2 px-4 rounded ${
-                      selectedCategory === cat.id 
-                        ? 'bg-mud-primary text-white' 
-                        : 'hover:bg-mud-light'
+                {categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    href={`/products?category=${category.id}${currentSubCategory ? `&subcategory=${currentSubCategory}` : ''}`}
+                    className={`block px-4 py-2 rounded-md transition-colors text-right ${
+                      currentCategory === category.id
+                        ? 'bg-mud-primary text-white'
+                        : 'hover:bg-gray-100'
                     }`}
                   >
-                    {cat.name}
-                  </button>
+                    {category.name}
+                  </Link>
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* Products Grid */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map(product => (
-                <ProductCard key={product.id} {...product} />
-              ))}
-            </div>
+            {/* Sub Categories */}
+            {currentCategory && (
+              <div>
+                <h2 className="text-lg font-bold mb-4 border-b pb-2 text-right">التصنيف</h2>
+                <div className="space-y-2">
+                  {subCategories.map((sub) => (
+                    <Link
+                      key={sub.id}
+                      href={`/products?category=${currentCategory}&subcategory=${sub.id}`}
+                      className={`block px-4 py-2 rounded-md transition-colors text-right ${
+                        currentSubCategory === sub.id
+                          ? 'bg-mud-secondary text-white'
+                          : 'hover:bg-gray-100'
+                      }`}
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
+
+        <div className="flex-1">
+          <div className="mb-4 text-gray-600 text-right">
+            تم العثور على {filteredProducts.length} منتج
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map(product => (
+              <ProductCard
+                key={product.id}
+                {...product}
+                discount={0}
+                originalPrice={product.price}
+              />
+            ))}
+          </div>
+          
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12 text-gray-500">
+              لا توجد منتجات في هذه الفئة
+            </div>
+          )}
+        </div>
+
+
       </div>
     </div>
   )
 }
+
+export default ProductsPage

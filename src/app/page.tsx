@@ -6,13 +6,17 @@ import GentsPerfumes from '../components/GentsPerfumes'
 import BestSellers from '../components/BestSellers'
 import AboutSection from '../components/AboutSection'
 import UnisexSection from '../components/UnisexSection'
+import BannerVideo from '@/components/BannerSlider'
+import ProductCategories from '@/components/ProductCategories'
 
 export default function Home() {
   return (
-    <div>
-      <Suspense fallback={<Loading />}>
+    <main>
+      <BannerVideo />
+      <ProductCategories />
+      {/* <Suspense fallback={<Loading />}>
         <BannerSlider />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<Loading />}>
         <GentsPerfumes />
       </Suspense>
@@ -28,6 +32,6 @@ export default function Home() {
       <Suspense fallback={<Loading />}>
         <AboutSection />
       </Suspense>
-    </div>
+    </main>
   )
 }

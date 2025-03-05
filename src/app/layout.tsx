@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar" dir="rtl" className={arabic.variable}>
-      <body className="min-h-screen flex flex-col">
+    <html lang="ar" dir="rtl">
+      <body className="font-regular">
         <CartProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>

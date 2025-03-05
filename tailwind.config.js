@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-arabic)'],
+        sans: ['var(--font-regular)'],
+        regular: ['var(--font-regular)'],
+        medium: ['var(--font-medium)'],
+        bold: ['var(--font-bold)'],
       },
       colors: {
         mud: {

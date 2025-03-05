@@ -5,10 +5,29 @@ import { useCart } from '../context/CartContext'
 import { FaWhatsapp, FaTimes, FaTrash, FaShoppingCart } from 'react-icons/fa'
 import { formatCurrency } from '../utils/currency'
 
+const shops = [
+  { 
+    id: 'tr',
+    name: 'متجر تركيا',
+    whatsapp: '90XXXXXXXXX',
+    flag: '🇹🇷'
+  },
+  {
+    id: 'ae',
+    name: 'متجر الإمارات',
+    whatsapp: '971XXXXXXXXX',
+    flag: '🇦🇪'
+  }
+]
+
 const Cart = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { items, removeItem, updateQuantity, total, clearCart } = useCart()
   const cartRef = useRef<HTMLDivElement>(null)
+  const [isShopSelectOpen, setIsShopSelectOpen] = useState(false)
+
+  // Calculate total quantity of items
+  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -30,31 +49,38 @@ const Cart = () => {
     setIsOpen(false)
   }
 
-  const sendToWhatsApp = () => {
-    const phoneNumber = '971XXXXXXXXX' // Replace with your WhatsApp number
-    const message = `طلب جديد:\n\n${items.map(item => 
-      `${item.name} - ${item.quantity} قطعة - ${formatCurrency(item.price * item.quantity)}`
-    ).join('\n')}\n\nالمجموع: ${formatCurrency(total)}`
+  const sendToWhatsApp = (shopWhatsapp: string) => {
+    const itemsList = items.map(item => 
+      `• ${item.name}\n  الكمية: ${item.quantity}\n  السعر: ${formatCurrency(item.price)}\n  المجموع: ${formatCurrency(item.price * item.quantity)}`
+    ).join('\n\n');
 
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    const message = `*طلب جديد*\n\n` +
+      `*تفاصيل الطلب:*\n` +
+      `==================\n\n` +
+      `${itemsList}\n\n` +
+      `==================\n` +
+      `*إجمالي الطلب:* ${formatCurrency(total)}\n\n` +
+      `الرجاء تأكيد الطلب وإرسال عنوان التوصيل`;
+
+    const whatsappUrl = `https://wa.me/${shopWhatsapp}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank')
     clearCart()
     setIsOpen(false)
+    setIsShopSelectOpen(false)
   }
 
   return (
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="relative flex items-center gap-2"
+        className="hover:text-mud-primary transition-colors relative"
       >
         <FaShoppingCart size={20} />
-        {items.length > 0 && (
-          <span className="absolute -top-2 -right-2 bg-mud-primary text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
-            {items.length}
+        {totalQuantity > 0 && (
+          <span className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center font-bold">
+            {totalQuantity}
           </span>
         )}
-        <span>سلة التسوق</span>
       </button>
 
       {isOpen && (
@@ -90,36 +116,66 @@ const Cart = () => {
                     <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded" />
                     <div className="flex-1">
                       <h3 className="font-semibold">{item.name}</h3>
-                      <p className="text-mud-primary">{formatCurrency(item.price)}</p>
+                      <p className="text-mud-primary font-bold">{formatCurrency(item.price)}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <select
                           value={item.quantity}
                           onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
-                          className="border rounded p-1"
+                          className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded px-2 py-1 focus:ring-2 focus:ring-mud-primary focus:border-mud-primary"
                         >
                           {[1,2,3,4,5].map(num => (
                             <option key={num} value={num}>{num}</option>
                           ))}
                         </select>
-                        <button onClick={() => removeItem(item.id)}>
+                        <button 
+                          onClick={() => removeItem(item.id)}
+                          className="p-1 hover:bg-red-50 rounded"
+                        >
                           <FaTrash className="text-red-500" />
                         </button>
                       </div>
+                      <p className="text-mud-primary font-semibold mt-1">
+                        المجموع: {formatCurrency(item.price * item.quantity)}
+                      </p>
                     </div>
                   </div>
                 ))}
 
                 <div className="mt-6 border-t pt-4">
-                  <div className="text-xl font-bold mb-4">
-                    المجموع: {formatCurrency(total)}
+                  <div className="text-2xl font-bold mb-4 bg-mud-primary text-white p-4 rounded-lg text-center">
+                    إجمالي الطلب: {formatCurrency(total)}
                   </div>
-                  <button
-                    onClick={sendToWhatsApp}
-                    className="w-full bg-green-500 text-white py-3 rounded-lg flex items-center justify-center gap-2"
-                  >
-                    <FaWhatsapp size={24} />
-                    إرسال الطلب عبر واتساب
-                  </button>
+                  
+                  {!isShopSelectOpen ? (
+                    <button
+                      onClick={() => setIsShopSelectOpen(true)}
+                      className="w-full bg-green-500 text-white py-3 rounded-lg flex items-center justify-center gap-2"
+                    >
+                      <FaWhatsapp size={24} />
+                      متابعة الطلب
+                    </button>
+                  ) : (
+                    <div className="space-y-3">
+                      <h3 className="text-lg font-bold text-center mb-4">اختر المتجر</h3>
+                      {shops.map(shop => (
+                        <button
+                          key={shop.id}
+                          onClick={() => sendToWhatsApp(shop.whatsapp)}
+                          className="w-full bg-white border-2 border-green-500 text-green-500 hover:bg-green-50 py-3 rounded-lg flex items-center justify-center gap-2"
+                        >
+                          <span>{shop.flag}</span>
+                          {shop.name}
+                          <FaWhatsapp size={24} />
+                        </button>
+                      ))}
+                      <button
+                        onClick={() => setIsShopSelectOpen(false)}
+                        className="w-full text-gray-500 py-2"
+                      >
+                        رجوع
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             )}
