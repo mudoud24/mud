@@ -17,14 +17,14 @@ export default function Home() {
       {/* <Suspense fallback={<Loading />}>
         <BannerSlider />
       </Suspense> */}
-      <Suspense fallback={<Loading />}>
+      {/* <Suspense fallback={<Loading />}>
         <GentsPerfumes />
+      </Suspense> */}
+      <Suspense fallback={<Loading />}>
+        <BestSellers />
       </Suspense>
       <Suspense fallback={<Loading />}>
         <UnisexSection />
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        <BestSellers />
       </Suspense>
       <Suspense fallback={<Loading />}>
         <FeaturedProducts />

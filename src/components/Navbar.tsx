@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { FaSearch, FaChevronDown } from 'react-icons/fa'
+import { FaSearch, FaChevronDown, FaBars, FaTimes } from 'react-icons/fa'
 import { SA, GB, TR, PK } from 'country-flag-icons/react/3x2'
 import Cart from './Cart'
 import SearchOverlay from './SearchOverlay'
@@ -10,86 +10,120 @@ import Image from 'next/image'
 
 // Product data for search
 const allProducts = [
-  // Men's Perfumes
   {
-    id: 'mp1',
-    name: 'الفريد 100 مل',
-    price: 119,
-    image: '/products/alfareed.webp',
-    category: 'عطور رجالية'
-  },
-  {
-    id: 'mp2',
-    name: 'أميري 75 مل',
-    price: 86,
-    image: '/products/amiri.webp',
-    category: 'عطور رجالية'
-  },
-  {
-    id: 'mp3',
-    name: 'سلطاني 100 مل',
-    price: 157.50,
-    image: '/products/sultani.webp',
-    category: 'عطور رجالية'
-  },
-  {
-    id: 'mp4',
-    name: 'عود ملكي 100 مل',
-    price: 368,
-    image: '/products/royal-oud.webp',
-    category: 'عطور رجالية'
-  },
-  {
-    id: 'mp5',
-    name: 'مسك اسود 100 مل',
+    id: 'p1',
+    name: 'عبير العود',
     price: 299,
-    image: '/products/black-musk.webp',
-    category: 'عطور رجالية'
-  },
-  // Women's Perfumes
-  {
-    id: 'wp1',
-    name: 'مسك الورد 100 مل',
-    price: 129,
-    image: '/products/rose-musk.webp',
-    category: 'عطور نسائية'
+    image: '/products/Perfume/Abeer.webp',
+    category: 'perfumes'
   },
   {
-    id: 'wp2',
-    name: 'عطر الياسمين 75 مل',
-    price: 199,
-    image: '/products/jasmine.webp',
-    category: 'عطور نسائية'
+    id: 'p2',
+    name: 'أمجاد',
+    price: 349,
+    image: '/products/Perfume/Amjad.webp',
+    category: 'perfumes'
   },
-  // Unisex Perfumes
   {
-    id: 'up1',
-    name: 'عنبر خاص 100 مل',
+    id: 'p3',
+    name: 'أصيل',
+    price: 399,
+    image: '/products/Perfume/Aseel.webp',
+    category: 'perfumes'
+  },
+  {
+    id: 'p4',
+    name: 'جوهر',
+    price: 299,
+    image: '/products/Perfume/Gohar.webp',
+    category: 'perfumes'
+  },
+  {
+    id: 'p5',
+    name: 'لؤلؤة',
     price: 279,
-    image: '/products/special-amber.webp',
-    category: 'عطور للجنسين'
+    image: '/products/Perfume/Loloa.webp',
+    category: 'perfumes'
   },
   {
-    id: 'up2',
-    name: 'مسك البنفسج 100 مل',
+    id: 'p6',
+    name: 'نقاء',
     price: 249,
-    image: '/products/violet-musk.webp',
-    category: 'عطور للجنسين'
-  },
-  // Oud Oils
-  {
-    id: 'o1',
-    name: 'دهن عود ملكي',
-    price: 599,
-    image: '/products/royal-oud-oil.webp',
-    category: 'دهن عود'
+    image: '/products/Perfume/Naqaa.webp',
+    category: 'perfumes'
   },
   {
-    id: 'o2',
-    name: 'دهن عود هندي',
-    price: 499,
-    image: '/products/indian-oud-oil.webp',
-    category: 'دهن عود'
+    id: 'p7',
+    name: 'نور',
+    price: 329,
+    image: '/products/Perfume/Noor.webp',
+    category: 'perfumes'
+  },
+  {
+    id: 'p8',
+    name: 'روح',
+    price: 289,
+    image: '/products/Perfume/Rooh.webp',
+    category: 'perfumes'
+  },
+  {
+    id: 'p9',
+    name: 'شموخ',
+    price: 379,
+    image: '/products/Perfume/SHomookh.webp',
+    category: 'perfumes'
+  },
+  {
+    id: 'p10',
+    name: 'وهج',
+    price: 359,
+    image: '/products/Perfume/Wahag.webp',
+    category: 'perfumes'
+  },
+  // Car Perfumes
+  {
+    id: 'cp1',
+    name: 'ريان',
+    price: 79,
+    image: '/products/Car Perfume/Rayyan.webp',
+    category: 'معطرات السيارات'
+  },
+  {
+    id: 'cp2',
+    name: 'فواح',
+    price: 69,
+    image: '/products/Car Perfume/Fawwah.webp',
+    category: 'معطرات السيارات'
+  },
+  // Reed Diffuser Products
+  {
+    id: 'rd1',
+    name: 'لمسة',
+    price: 189,
+    image: '/products/Reed Diffuser/Lamsa.webp',
+    category: 'معطرات أعواد'
+  },
+  {
+    id: 'rd2',
+    name: 'ندى',
+    price: 199,
+    image: '/products/Reed Diffuser/Nada.webp',
+    category: 'معطرات أعواد'
+  },
+  {
+    id: 'rd3',
+    name: 'سما',
+    price: 179,
+    image: '/products/Reed Diffuser/Sama.webp',
+    category: 'معطرات أعواد'
+  },
+  // Room Spray Products
+  {
+    id: 'rs1',
+    name: 'خلود',
+    price: 159,
+    image: '/products/Room Spray/Kholood.webp',
+    category: 'معطرات الغرفة'
   }
 ]
 
@@ -100,30 +134,40 @@ const languages = [
   { code: 'ps', name: 'پښتو', flag: PK },
 ]
 
+const languageNames = {
+  ar: 'العربية',
+  en: 'English',
+  tr: 'Türkçe',
+  ps: 'پښتو',
+}
+
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [language, setLanguage] = useState('ar')
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const currentLang = languages.find(lang => lang.code === language)
   const isRTL = language === 'ar' || language === 'ps'
 
   return (
     <>
-      <nav className="bg-[#ca9a2d] text-white py-4 relative z-50">
-        <div className={`container mx-auto px-2 flex justify-between items-center ${isRTL ? 'dir-rtl' : 'dir-ltr'}`}>
-          {/* <Link href="/" className="min-w-[120px] relative">
+      <nav className="bg-[#ca9a2d] text-white py-1 relative z-50">
+        <div className="container mx-auto px-2 flex flex-row-reverse md:flex-row-reverse justify-between items-center">
+          {/* Logo - Right side on both mobile and desktop */}
+          <Link href="/" className="relative w-[120px] h-[70px] order-1 md:order-3">
             <Image 
               src="/logo.png" 
               alt="مسك وعود"
-              width={60}
-              height={50}
-              className="object-contain"
+              fill
+              sizes="120px"
+              className="object-contain brightness-0 invert"
               priority
             />
-          </Link> */}
+          </Link>
 
-          <div className={`hidden md:flex gap-8 justify-center flex-1 ${isRTL ? 'space-x-reverse' : 'space-x'}`}>
+          {/* Desktop Menu - Center */}
+          <div className="hidden md:flex gap-8 justify-center flex-1 order-2">
             <Link href="/" className="text-xl lg:text-2xl font-bold hover:text-mud-primary transition-colors whitespace-nowrap">
               {isRTL ? 'الرئيسية' : 'Home'}
             </Link>
@@ -138,9 +182,9 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center justify-end min-w-[180px] pl-4">
-            {/* Language Selector - Always First */}
-            <div className="relative">
+          {/* Controls Group - Left side on both mobile and desktop */}
+          <div className="flex items-center gap-4 order-3 md:order-1">
+            <div className="relative hidden md:block">
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center gap-2 hover:text-mud-primary transition-colors whitespace-nowrap"
@@ -169,15 +213,86 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Search and Cart - Always Last */}
-            <div className="flex items-center gap-4 ml-4 mr-4">
+            {/* Reordered Icons */}
+            <div className="flex items-center gap-4">
+              {/* Menu Button - 1 */}
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="md:hidden text-white"
+              >
+                <FaBars size={24} />
+              </button>
+              {/* Cart Icon - 2 */}
+              <Cart />
+              {/* Search Icon - 3 */}
               <button
                 onClick={() => setIsSearchOpen(true)}
                 className="hover:text-mud-primary transition-colors"
               >
                 <FaSearch size={20} />
               </button>
-              <Cart />
+
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}>
+          <div className={`fixed inset-y-0 right-0 w-64 bg-white transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}>
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-mud-primary text-xl font-bold">القائمة</h2>
+
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <FaTimes size={24} />
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {/* Menu Links */}
+                <div className="space-y-2">
+                  {[
+                    { href: '/', text: 'الرئيسية' },
+                    { href: '/products', text: 'المنتجات' },
+                    { href: '/about', text: 'من نحن' },
+                    { href: '/contact', text: 'اتصل بنا' },
+                  ].map(link => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block text-gray-800 py-2 text-right"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.text}
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Language Selector in Mobile Menu */}
+                <div className="pt-4 border-t">
+                  <h3 className="text-lg font-bold mb-2 text-gray-800">اختر اللغة</h3>
+                  <div className="flex flex-col gap-2">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code)
+                          setIsMobileMenuOpen(false)
+                        }}
+                        className="flex items-center gap-3 py-2 px-2 text-right hover:bg-gray-100 rounded transition-colors"
+                      >
+                        <lang.flag className="w-6 h-6" />
+                        <span className="font-medium text-gray-800">{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

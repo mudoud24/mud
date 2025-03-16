@@ -1,119 +1,81 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { FaTimes, FaSearch } from 'react-icons/fa'
+import { useState } from 'react'
 import Link from 'next/link'
-
-interface Product {
-  id: string
-  name: string
-  price: number
-  image: string
-  category: string
-}
+import Image from 'next/image'
+import { FaTimes } from 'react-icons/fa'
+import { formatCurrency } from '../utils/currency'
 
 interface SearchOverlayProps {
   isOpen: boolean
   onClose: () => void
-  products: Product[]
+  products: any[]
 }
 
 const SearchOverlay = ({ isOpen, onClose, products }: SearchOverlayProps) => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-  const searchRef = useRef<HTMLDivElement>(null)
 
-  const normalizeArabicText = (text: string) => {
-    return text
-      .replace(/[يى]/g, 'ي')
-      .replace(/[أإآا]/g, 'ا')
-      .replace(/[ؤئ]/g, 'ء')
-      .replace(/[ة]/g, 'ه')
-      .toLowerCase()
-      .trim()
+  // Filter products based on search term
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const handleProductClick = (product: any) => {
+    // Store selected product data
+    localStorage.setItem('searchSelectedProduct', JSON.stringify({
+      ...product,
+      shouldOpenViewer: true
+    }))
+    onClose()
   }
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
-        onClose()
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [isOpen, onClose])
-
-  useEffect(() => {
-    const normalizedSearchTerm = normalizeArabicText(searchTerm)
-    const results = products.filter(product => 
-      normalizeArabicText(product.name).includes(normalizedSearchTerm) ||
-      normalizeArabicText(product.category).includes(normalizedSearchTerm)
-    )
-    setFilteredProducts(results)
-  }, [searchTerm, products])
 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50">
-      <div
-        ref={searchRef}
-        className="fixed inset-x-0 top-0 bg-white p-6 max-h-screen overflow-y-auto"
-      >
-        <div className="container mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <div className="flex-1 max-w-2xl mx-auto relative">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="ابحث عن المنتجات..."
-                className="w-full p-3 pr-10 text-right border border-gray-300 rounded-lg focus:outline-none focus:border-mud-primary"
-                dir="rtl"
-                autoFocus
-              />
-              <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-            </div>
-            <button
-              onClick={onClose}
-              className="mr-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <FaTimes size={24} />
-            </button>
-          </div>
+    <div className="fixed inset-0 bg-black/90 z-[100] p-4">
+      <div className="container mx-auto max-w-3xl">
+        <div className="flex justify-end mb-4">
+          <button 
+            onClick={onClose}
+            className="text-white p-2"
+          >
+            <FaTimes size={24} />
+          </button>
+        </div>
 
-          {searchTerm && (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-              {filteredProducts.map(product => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.id}`}
-                  onClick={onClose}
-                  className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-16 h-16 object-cover rounded"
-                  />
-                  <div>
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-mud-primary">${product.price}</p>
-                  </div>
-                </Link>
-              ))}
-              {filteredProducts.length === 0 && (
-                <p className="text-gray-500 col-span-full text-center">
-                  لا توجد نتائج
-                </p>
-              )}
+        <input
+          type="text"
+          placeholder="ابحث عن منتج..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full bg-white/10 text-white border-0 rounded-lg p-4 mb-8 text-lg focus:outline-none focus:ring-2 focus:ring-mud-primary"
+          autoFocus
+        />
+
+        <div className="grid gap-4 max-h-[60vh] overflow-y-auto">
+          {filteredProducts.map(product => (
+            <div
+              key={product.id}
+              onClick={() => handleProductClick(product)}
+              className="bg-white/5 rounded-lg p-4 flex items-center gap-4 hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <div className="relative w-16 h-16 flex-shrink-0">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover rounded"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-white font-bold">{product.name}</h3>
+                <p className="text-mud-primary">{formatCurrency(product.price)}</p>
+              </div>
             </div>
+          ))}
+
+          {filteredProducts.length === 0 && searchTerm && (
+            <p className="text-center text-gray-400">لا توجد نتائج للبحث</p>
           )}
         </div>
       </div>

@@ -13,6 +13,20 @@ const arabic = Noto_Naskh_Arabic({
 export const metadata = {
   title: 'مسك وعود',
   description: 'عطور فاخرة، عود، ومنتجات العناية الشخصية',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.svg',
+        sizes: 'any',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      }
+    ],
+    shortcut: '/favicon.ico',
+  },
+  manifest: '/manifest.json',
 }
 
 export default function RootLayout({
@@ -21,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className="font-regular">
+    <html lang="ar" dir="rtl" className={arabic.variable}>
+      <body className="min-h-screen flex flex-col">
         <CartProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
