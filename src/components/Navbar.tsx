@@ -157,7 +157,7 @@ const Navbar = () => {
           {/* Logo - Right side on both mobile and desktop */}
           <Link href="/" className="relative w-[120px] h-[70px] order-1 md:order-3">
             <Image 
-              src="/logo.png" 
+              src="/logo.PNG" 
               alt="مسك وعود"
               fill
               sizes="120px"
