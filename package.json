@@ -11,6 +11,7 @@
     "deploy": "next build && next start"
   },
   "dependencies": {
+    "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.15",
     "country-flag-icons": "^1.5.18",
     "framer-motion": "^10.16.0",

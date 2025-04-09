@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Noto_Naskh_Arabic } from 'next/font/google'
 import { CartProvider } from '../context/CartContext'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const arabic = Noto_Naskh_Arabic({
   subsets: ['arabic'],
   weight: ['400', '500', '600', '700'],
