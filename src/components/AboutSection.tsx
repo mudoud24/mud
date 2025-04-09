@@ -15,7 +15,7 @@ const AboutSection = () => {
           className="relative h-[200px] md:h-[500px] rounded-lg overflow-hidden"
         >
           <Image
-            src="/aboutImage.PNG"
+            src="/aboutImage.png"
             alt="About MUD"
             fill
             className="object-cover rounded-lg"
