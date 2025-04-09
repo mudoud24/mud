@@ -22,7 +22,7 @@ const BannerVideo = () => {
         playsInline
         className="md:hidden absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/videos/mobile-banner.mp4" type="video/mp4" />
+        <source src="/videos/desktop-banner.mp4" type="video/mp4" />
       </video>
 
       {/* Optional Overlay */}
@@ -30,7 +30,7 @@ const BannerVideo = () => {
 
       {/* Content */}
       <div className="relative z-20 container mx-auto h-full flex items-center justify-center text-center px-4">
-        <div className="text-white">
+        <div className="text-white hidden">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">مسك وعود</h1>
           <p className="text-xl md:text-2xl">عطور فاخرة بلمسة عربية أصيلة</p>
         </div>

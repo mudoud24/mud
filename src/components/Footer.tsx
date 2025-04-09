@@ -23,9 +23,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">تواصل معنا</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>البريد: info@mud.com</li>
-              <li>الهاتف: ٠٠٩١٤٠٠٠٠٠٠٠</li>
-              <li>العنوان: بلاد الله </li>
+              <li>البريد: info@musk-oud.com</li>
+              {/* <li>الهاتف: ٠٠٩١٤٠٠٠٠٠٠٠</li> */}
+              <li>العنوان: Yakuplu, 67. Sk. No: 26,  Beylikdüzü/İstanbul/TÜRKİYE </li>
             </ul>
           </div>
 

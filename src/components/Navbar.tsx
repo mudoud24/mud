@@ -152,7 +152,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-[#ca9a2d] text-white py-1 relative z-50">
+      <nav className="bg-[#363333] text-white py-2 relative z-50">
         <div className="container mx-auto px-2 flex flex-row-reverse md:flex-row-reverse justify-between items-center">
           {/* Logo - Right side on both mobile and desktop */}
           <Link href="/" className="relative w-[120px] h-[70px] order-1 md:order-3">

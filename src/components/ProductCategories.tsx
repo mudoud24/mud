@@ -5,42 +5,42 @@ const categories = [
   {
     id: 'perfumes',
     name: 'العطور',
-    image: '/categories/perfumes.webp'
+    image: '/products/Perfumes/100ml/Abeer/1.webp'
   },
   {
     id: 'oils',
     name: 'الزيوت',
-    image: '/categories/oils.webp'
+    image: '/products/Oils/Misk Karzi/1.webp'
   },
   {
     id: 'incense',
     name: 'معطرات اعواد',
-    image: '/categories/incense.webp'
+    image: '/products/Reed Diffuser/Sama/1.webp'
   },
   {
     id: 'room-spray',
     name: 'معطرات الغرفة',
-    image: '/categories/room-spray.webp'
+    image: '/products/Room Spray/kholoud/1.webp'
   },
   {
     id: 'car-perfumes',
     name: 'معطرات السيارات',
-    image: '/categories/car-perfumes.webp'
+    image: '/products/Car Perfume/Abq/1.webp'
   },
   {
     id: 'skin-care',
     name: 'العناية بالبشرة',
-    image: '/categories/skin-care.webp'
+    image: '/products/Skin Care/Hair Shampoo/1.webp'
   },
   {
     id: 'body-mist',
     name: 'معطر الجسم',
-    image: '/categories/body-mist.webp'
+    image: '/products/Skin Care/Ansam/1.webp'
   },
   {
     id: 'diffuser',
     name: 'المعطرات الكهربائية',
-    image: '/categories/diffuser.webp'
+    image: '/products/Electric Diffuser/Volcano/1.webp'
   }
 ]
 
@@ -48,7 +48,7 @@ const ProductCategories = () => {
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">تسوق حسب الفئة</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">منتجاتنا</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {categories.map((category) => (
             <Link 

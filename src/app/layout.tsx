@@ -27,6 +27,22 @@ export const metadata = {
     shortcut: '/favicon.ico',
   },
   manifest: '/manifest.json',
+  preload: [
+    {
+      rel: 'preload',
+      href: '/fonts/ReadexPro-Regular.woff2',
+      as: 'font',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      href: '/fonts/ReadexPro-SemiBold.woff2',
+      as: 'font',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    }
+  ]
 }
 
 export default function RootLayout({

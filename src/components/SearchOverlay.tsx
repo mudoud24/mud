@@ -21,11 +21,8 @@ const SearchOverlay = ({ isOpen, onClose, products }: SearchOverlayProps) => {
   )
 
   const handleProductClick = (product: any) => {
-    // Store selected product data
-    localStorage.setItem('searchSelectedProduct', JSON.stringify({
-      ...product,
-      shouldOpenViewer: true
-    }))
+    // Navigate to products page with query params
+    window.location.href = `/products?category=${product.category}&productId=${product.id}`
     onClose()
   }
 

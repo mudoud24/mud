@@ -15,9 +15,9 @@ const UnisexSection = () => {
             transition={{ duration: 1 }}
             className="relative w-full h-[300px] md:h-[500px] rounded-lg overflow-hidden"
           >
-            <Link href="/fragrances/unisex-fragrances">
+            <Link href="/products?category=perfumes">
               <Image
-                src="/products/unisex-collection.webp"
+                src="/products/Perfumes/100ml/Abeer/1.webp"
                 alt="عطور للجنسين"
                 fill
                 className="object-cover rounded-lg"
@@ -32,7 +32,7 @@ const UnisexSection = () => {
                 مجموعة مميزة من العطور المناسبة للجميع
               </p>
               <Link 
-                href="/products?category=unisex"
+                href="/products?category=perfumes"
                 className="inline-block bg-white text-black px-6 py-2 rounded-md hover:bg-white/90 transition-colors"
               >
                 تسوق الآن
@@ -53,7 +53,7 @@ const UnisexSection = () => {
             </p>
             <div>
               <Link 
-                href="/fragrances/unisex-fragrances"
+                href="/products?category=perfumes"
                 className="inline-block bg-mud-secondary text-white px-8 py-3 rounded-lg hover:bg-mud-secondary/90 transition-colors"
               >
                 المزيد...

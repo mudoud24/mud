@@ -3,27 +3,27 @@ import ProductCard from './ProductCard'
 const bestSellers = [
   {
     id: 'bs1',
-    name: 'دهن العود الملكي',
-    price: 599,
-    image: '/products/royal-oud-oil.webp'
+    name: 'عبير',
+    price: 59.99,
+    image: '/products/Perfumes/100ml/Abeer/1.webp'
   },
   {
     id: 'bs2',
-    name: 'عطر المسك الأسود',
-    price: 399,
-    image: '/products/black-musk.webp'
+    name: 'لؤلؤة',
+    price: 9.99,
+    image: '/products/Oils/Luluah/1.webp'
   },
   {
     id: 'bs3',
-    name: 'عود كلمنتان',
-    price: 799,
-    image: '/products/kalimantan-oud.webp'
+    name: 'شامبو مسك وعود',
+    price: 3.99,
+    image: '/products/Skin Care/Hair Shampoo/1.webp'
   },
   {
     id: 'bs4',
-    name: 'مخلط السلطان',
-    price: 499,
-    image: '/products/sultan-blend.webp'
+    name: 'سما',
+    price: 4.49,
+    image: '/products/Reed Diffuser/Sama/1.webp'
   }
 ]
 

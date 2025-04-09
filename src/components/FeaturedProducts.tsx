@@ -3,24 +3,24 @@ import ProductCard from './ProductCard'
 const featuredProducts = [
   {
     id: '1',
-    name: 'العود الملكي',
-    price: 79,
-    image: '/products/royal-oud.webp',
-    originalPrice: 159
+    name: 'نور 100 مل ',
+    price: 39.99,
+    image: '/products/Perfumes/100ml/Noor/1.webp',
+    originalPrice: 50
   },
   {
     id: '2',
-    name: 'مسك منتصف الليل',
-    price: 66,
-    image: '/products/midnight-musk.webp',
-    originalPrice: 133
+    name: 'وهج 60 مل',
+    price: 19.99,
+    image: '/products/Perfumes/60ml/Wahaj/1.webp',
+    originalPrice: 25
   },
   {
     id: '3',
-    name: 'الورد العربي',
-    price: 199,
-    image: '/products/arabian-rose.webp',
-    originalPrice: 399
+    name: 'أصيل 60 مل',
+    price: 19.99,
+    image: '/products/Perfumes/60ml/Aseel/1.webp',
+    originalPrice: 30
   }
 ]
 
