@@ -8,7 +8,7 @@ export default function AboutPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">من نحن</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            نحن شركة رائدة في مجال العطور الفاخرة والعناية الشخصية
+             شركة رائدة في مجال العطور الفاخرة والعناية الشخصية
           </p>
         </div>
 

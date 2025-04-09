@@ -3,48 +3,40 @@ import ProductCard from './ProductCard'
 const featuredProducts = [
   {
     id: '1',
-    name: 'نور 100 مل',
-    price: 39.99,
+    name: 'مسك وعود المجموعة العطرية',
+    price: 49.99,
     category: 'perfumes',
-    subcategory: '100ml',
-    description: 'عطر فاخر يجمع بين عبق العود الأصيل، نفحات العنبر الدافئة، ولمسات الزعفران الفاخرة',
-    image: '/products/Perfumes/100ml/Noor/1.webp',
+    description: 'برفيوم 100 مل + 2 زيت عطري 6 مل ',
+    image: '/products/PerOil.webp',
     images: [
-      '/products/Perfumes/100ml/Noor/1.webp',
-      '/products/Perfumes/100ml/Noor/2.webp',
-      '/products/Perfumes/100ml/Noor/3.webp'
+      '/products/PerOil.webp',
     ],
-    originalPrice: 50
+    originalPrice: 100
   },
   {
     id: '2',
-    name: 'وهج 60 مل',
-    price: 19.99,
+    name: 'مسك وعود المجموعة الفاخرة',
+    price: 99.99,
     category: 'perfumes',
-    subcategory: '60ml',
-    description: 'عود أصيل، عنبر فاخر، زعفران نابض، دفء شرقي، فخامة خالدة',
-    image: '/products/Perfumes/60ml/Wahaj/1.webp',
+    description: 'مسك وعود المجموعة الفاخرة',
+    image: '/products/Diffspray.webp',
     images: [
-      '/products/Perfumes/60ml/Wahaj/1.webp',
-      '/products/Perfumes/60ml/Wahaj/2.webp',
-      '/products/Perfumes/60ml/Wahaj/3.webp'
+      '/products/Diffspray.webp',
+
     ],
-    originalPrice: 25
+    originalPrice: 200
   },
   {
     id: '3',
-    name: 'أصيل 60 مل',
-    price: 19.99,
-    category: 'perfumes',
-    subcategory: '60ml',
-    description: 'عطر فاخر ينبض بالفخامة، يمزج بين نفحات الزعفران الدافئ، العنبر الذهبي، ولمسات من الورد الشرقي والمسك',
-    image: '/products/Perfumes/60ml/Aseel/1.webp',
+    name: 'مسك وعود مجموعة العناية بالبشرة',
+    price: 29.99,
+    category: 'skin-care',
+    description: "مسك وعود مجموعة العناية بالبشرة",
+    image: '/products/SKare.webp',
     images: [
-      '/products/Perfumes/60ml/Aseel/1.webp',
-      '/products/Perfumes/60ml/Aseel/2.webp',
-      '/products/Perfumes/60ml/Aseel/3.webp'
+      '/products/SKare.webp'
     ],
-    originalPrice: 30
+    originalPrice: 60
   }
 ]
 

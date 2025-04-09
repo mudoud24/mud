@@ -39,21 +39,17 @@ const getSubCategories = (categoryId: string): SubCategory[] => {
 }
 
 const ProductsPage = () => {
-  // URL params
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category')
   const productId = searchParams.get('productId')
   const currentSubCategory = searchParams.get('subcategory') || 'all'
 
-  // State
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
-  // Convert products object to array and get current subcategories
   const products = Object.values(productsData).flat() as Product[]
   const currentSubCategories = currentCategory ? getSubCategories(currentCategory) : []
 
-  // Filter products based on category and subcategory
   const filteredProducts = products.filter(product => {
     const categoryMatch = !currentCategory || product.category === currentCategory
     const subcategoryMatch = 

@@ -21,7 +21,7 @@ const bestSellers = [
     price: 9.99,
     category: 'oils',
     description: 'زيت عطري مميز بنفحات المسك والعود',
-    image: '/products/Oils/Luluah/1.webp',
+    image: '/products/Oils/Luluah/1-home.webp',
     images: [
       '/products/Oils/Luluah/1.webp',
       '/products/Oils/Luluah/2.webp',

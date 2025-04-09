@@ -17,7 +17,7 @@ const UnisexSection = () => {
           >
             <Link href="/products?category=perfumes">
               <Image
-                src="/products/Perfumes/100ml/Abeer/1.webp"
+                src="/products/unisex-collection.webp"
                 alt="عطور للجنسين"
                 fill
                 className="object-cover rounded-lg"

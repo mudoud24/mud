@@ -1,13 +1,24 @@
 export const categories = [
-  { id: 'perfumes', name: 'العطور', image: '/products/categories/perfumes.webp',subCategories: ['60ml', '100ml'] },
-  { id: 'water-perfumes', name: 'العطور المائية', image: '/products/Water perfumes/category.webp' },
-  { id: 'oils', name: 'الزيوت العطرية', image: '/products/Oils/category.webp',    subCategories: ['men', 'women', 'unisex']  },
-  { id: 'skin-care', name: 'العناية بالبشرة', image: '/products/Skin Care/category.webp' },
+  { id: 'perfumes', name: 'العطور', image: '/products/categories/perfumes.webp', subCategories: ['60ml', '100ml'], gender: ['men', 'women', 'unisex'] },
+  { id: 'oils', name: 'الزيوت العطرية', image: '/products/Oils/category.webp', subCategories: ['men', 'women', 'unisex'], gender: ['men', 'women', 'unisex'] },
   { id: 'room-spray', name: 'معطرات الغرفة', image: '/products/Room Spray/category.webp' },
-  { id: 'car-perfumes', name: 'معطرات السيارات', image: '/products/Car Perfume/category.webp' },
   { id: 'reed-diffuser', name: 'معطرات الأعواد', image: '/products/Reed Diffuser/category.webp' },
-  { id: 'electric-diffuser', name: 'المعطرات الكهربائية', image: '/products/Electric Diffuser/category.webp' },
+  { id: 'car-perfumes', name: 'معطرات السيارات', image: '/products/Car Perfume/category.webp' },
+  { id: 'water-perfumes', name: 'العطور المائية', image: '/products/Water perfumes/category.webp' },
+  { id: 'electric-diffuser', name: 'الفواحات الكهربائية', image: '/products/Electric Diffuser/category.webp' },
+  { id: 'skin-care', name: 'العناية بالبشرة', image: '/products/Skin Care/category.webp' },
 ]
+
+export const genderLabels = {
+  men: 'رجالي',
+  women: 'نسائي',
+  unisex: 'للجنسين'
+} as const
+
+export const getGenderLabel = (gender?: 'men' | 'women' | 'unisex') => {
+  if (!gender) return ''
+  return genderLabels[gender]
+}
 
 export type Product = {
   id: string
@@ -15,6 +26,7 @@ export type Product = {
   price: number
   category: string
   subcategory?: string
+  gender?: 'men' | 'women' | 'unisex'
   description: string
   image: string
   images: string[]
@@ -24,8 +36,8 @@ export type Product = {
 
 export const getProductsBySubcategory = (category: string, subcategory: string) => {
   const categoryProducts = Object.values(products).flat() as Product[]
-  return categoryProducts.filter(product => 
-    product.category === category && 
+  return categoryProducts.filter(product =>
+    product.category === category &&
     product.subcategory === subcategory
   )
 }
@@ -35,6 +47,7 @@ export type ProductCategory = {
   name: string
   image: string
   subCategories?: string[]
+  gender?: string[]
 }
 
 
@@ -47,8 +60,9 @@ export const products = {
       price: 59.99,
       category: 'perfumes',
       subcategory: '100ml',
+      gender: 'men',
       description: 'عطر فخم يتميز بنفحات داكنة ومركزة من العود والتبغ والأخشاب العميقة',
-      image: '/products/Perfumes/100ml/Abeer/1.webp',
+      image: '/products/Perfumes/100ml/Abeer/3.webp',
       images: [
         '/products/Perfumes/100ml/Abeer/1.webp',
         '/products/Perfumes/100ml/Abeer/2.webp',
@@ -61,6 +75,7 @@ export const products = {
       price: 34.99,
       category: 'perfumes',
       subcategory: '60ml',
+      gender: 'men',
       description: 'عطر فخم يتميز بنفحات داكنة ومركزة من العود والتبغ والأخشاب العميقة',
       image: '/products/Perfumes/60ml/Abeer/1.webp',
       images: [
@@ -75,7 +90,7 @@ export const products = {
       price: 39.99,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'men',
       description: 'عطر فاخر يجمع بين عبق العود الأصيل، نفحات العنبر الدافئة، ولمسات الزعفران الفاخرة',
       image: '/products/Perfumes/100ml/Noor/1.webp',
       images: [
@@ -83,13 +98,13 @@ export const products = {
         '/products/Perfumes/100ml/Noor/2.webp',
         '/products/Perfumes/100ml/Noor/3.webp'
       ]
-    },    {
+    }, {
       id: 'p2-60',
       name: 'نور',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'men',
       description: 'عطر فاخر يجمع بين عبق العود الأصيل، نفحات العنبر الدافئة، ولمسات الزعفران الفاخرة',
       image: '/products/Perfumes/60ml/Noor/1.webp',
       images: [
@@ -104,7 +119,7 @@ export const products = {
       price: 29.99,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'عود أصيل، عنبر فاخر، زعفران نابض، دفء شرقي، فخامة خالدة',
       image: '/products/Perfumes/100ml/Wahaj/1.webp',
       images: [
@@ -112,13 +127,13 @@ export const products = {
         '/products/Perfumes/100ml/Wahaj/2.webp',
         '/products/Perfumes/100ml/Wahaj/3.webp'
       ]
-    },    {
+    }, {
       id: 'p3-60',
       name: 'وهج',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'عود أصيل، عنبر فاخر، زعفران نابض، دفء شرقي، فخامة خالدة',
       image: '/products/Perfumes/60ml/Wahaj/1.webp',
       images: [
@@ -133,7 +148,7 @@ export const products = {
       price: 49.99,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'women',
       description: 'عطر ساحر يمزج بين نفحات الزعفران الفاخر، العنبر الدافئ، والأخشاب العميقة',
       image: '/products/Perfumes/100ml/Naqaa/1.webp',
       images: [
@@ -141,13 +156,13 @@ export const products = {
         '/products/Perfumes/100ml/Naqaa/2.webp',
         '/products/Perfumes/100ml/Naqaa/3.webp'
       ]
-    },    {
+    }, {
       id: 'p4-60',
       name: 'نقاء',
       price: 24.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'women',
       description: 'عطر ساحر يمزج بين نفحات الزعفران الفاخر، العنبر الدافئ، والأخشاب العميقة',
       image: '/products/Perfumes/60ml/Naqaa/1.webp',
       images: [
@@ -159,10 +174,10 @@ export const products = {
     {
       id: 'p5-100',
       name: 'جوهر',
-      price: 49.90,
+      price: 39.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'men',
       description: 'عطر فخم يجمع بين دفء العود المخملي ونفحات العنبر الناعمة، مع لمسات من المسك والكشمير',
       image: '/products/Perfumes/100ml/Jawhar/1.webp',
       images: [
@@ -170,13 +185,13 @@ export const products = {
         '/products/Perfumes/100ml/Jawhar/2.webp',
         '/products/Perfumes/100ml/Jawhar/3.webp'
       ]
-    },    {
+    }, {
       id: 'p5-60',
       name: 'جوهر',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'men',
       description: 'عطر فخم يجمع بين دفء العود المخملي ونفحات العنبر الناعمة، مع لمسات من المسك والكشمير',
       image: '/products/Perfumes/60ml/Jawhar/1.webp',
       images: [
@@ -188,10 +203,10 @@ export const products = {
     {
       id: 'p6-100',
       name: 'أصيل',
-      price: 49.90,
+      price: 34.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'women',
       description: 'عطر فاخر ينبض بالفخامة، يمزج بين نفحات الزعفران الدافئ، العنبر الذهبي، ولمسات من الورد الشرقي والمسك',
       image: '/products/Perfumes/100ml/Aseel/1.webp',
       images: [
@@ -199,13 +214,13 @@ export const products = {
         '/products/Perfumes/100ml/Aseel/2.webp',
         '/products/Perfumes/100ml/Aseel/3.webp'
       ]
-    },    {
+    }, {
       id: 'p6-60',
       name: 'أصيل',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'women',
       description: 'عطر فاخر ينبض بالفخامة، يمزج بين نفحات الزعفران الدافئ، العنبر الذهبي، ولمسات من الورد الشرقي والمسك',
       image: '/products/Perfumes/60ml/Aseel/1.webp',
       images: [
@@ -220,7 +235,7 @@ export const products = {
       price: 29.99,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'عطر ساحر يجسد انتعاش الطبيعة وأسرار الجزر الاستوائية، بمزيج متناغم من الحمضيات المنعشة، الأزهار الرقيقة، والأخشاب الدافئة',
       image: '/products/Perfumes/100ml/Amjad/1.webp',
       images: [
@@ -228,13 +243,13 @@ export const products = {
         '/products/Perfumes/100ml/Amjad/2.webp',
         '/products/Perfumes/100ml/Amjad/3.webp'
       ]
-    },    {
+    }, {
       id: 'p7-60',
       name: 'أمجاد',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'عطر ساحر يجسد انتعاش الطبيعة وأسرار الجزر الاستوائية، بمزيج متناغم من الحمضيات المنعشة، الأزهار الرقيقة، والأخشاب الدافئة',
       image: '/products/Perfumes/60ml/Amjad/1.webp',
       images: [
@@ -246,10 +261,10 @@ export const products = {
     {
       id: 'p8-100',
       name: 'مجد',
-      price: 49.90,
+      price: 39.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'men',
       description: 'عطر شرقي فاخر يرتكز على نفحات العود الكمبودي النقي، ممزوج بلمسات من العنبر الدافئ، المسك الفاخر، والزهور الشرقية',
       image: '/products/Perfumes/100ml/Majd/1.webp',
       images: [
@@ -257,13 +272,13 @@ export const products = {
         '/products/Perfumes/100ml/Majd/2.webp',
         '/products/Perfumes/100ml/Majd/3.webp'
       ]
-    },    {
+    }, {
       id: 'p8-60',
       name: 'مجد',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'men',
       description: 'عطر شرقي فاخر يرتكز على نفحات العود الكمبودي النقي، ممزوج بلمسات من العنبر الدافئ، المسك الفاخر، والزهور الشرقية',
       image: '/products/Perfumes/60ml/Majd/1.webp',
       images: [
@@ -275,10 +290,10 @@ export const products = {
     {
       id: 'p9-100',
       name: 'رُقي',
-      price: 49.90,
+      price: 29.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'men',
       description: 'عطر فاخر يجمع بين العود النقي، العنبر الدافئ، والمسك الفاخر، بتركيبة غنية تعكس الفخامة الشرقية',
       image: '/products/Perfumes/100ml/Roqy/1.webp',
       images: [
@@ -286,13 +301,13 @@ export const products = {
         '/products/Perfumes/100ml/Roqy/2.webp',
         '/products/Perfumes/100ml/Roqy/3.webp'
       ]
-    },    {
+    }, {
       id: 'p9-60',
       name: 'رُقي',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'men',
       description: 'عطر فاخر يجمع بين العود النقي، العنبر الدافئ، والمسك الفاخر، بتركيبة غنية تعكس الفخامة الشرقية',
       image: '/products/Perfumes/60ml/Roqy/1.webp',
       images: [
@@ -304,10 +319,10 @@ export const products = {
     {
       id: 'p10-100',
       name: 'شغف',
-      price: 49.90,
+      price: 34.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'men',
       description: 'عطر راقٍ يجمع بين نعومة العود الفاخر، لمسات المسك الحريري، ونفحات العنبر الدافئة',
       image: '/products/Perfumes/100ml/Shaghaf/1.webp',
       images: [
@@ -322,7 +337,7 @@ export const products = {
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'men',
       description: 'عطر راقٍ يجمع بين نعومة العود الفاخر، لمسات المسك الحريري، ونفحات العنبر الدافئة',
       image: '/products/Perfumes/60ml/Shaghaf/1.webp',
       images: [
@@ -334,10 +349,10 @@ export const products = {
     {
       id: 'p11-100',
       name: 'هيبة',
-      price: 49.90,
+      price: 29.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'عطر ملكي يفوح بالفخامة، يمزج بين العود الفاخر، العنبر الدافئ، والورد الشرقي بلمسات راقية من المسك والزعفران',
       image: '/products/Perfumes/100ml/Haybah/1.webp',
       images: [
@@ -345,13 +360,13 @@ export const products = {
         '/products/Perfumes/100ml/Haybah/2.webp',
         '/products/Perfumes/100ml/Haybah/3.webp'
       ]
-    },    {
+    }, {
       id: 'p11-60',
       name: 'هيبة',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'عطر ملكي يفوح بالفخامة، يمزج بين العود الفاخر، العنبر الدافئ، والورد الشرقي بلمسات راقية من المسك والزعفران',
       image: '/products/Perfumes/60ml/Haybah/1.webp',
       images: [
@@ -363,10 +378,10 @@ export const products = {
     {
       id: 'p12-100',
       name: 'ريماس',
-      price: 49.90,
+      price: 29.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'عطر مشرق يجمع بين العود الدافئ، العنبر الذهبي، والزهور الشرقية، مع لمسات من المسك الفاخر',
       image: '/products/Perfumes/100ml/Rimas/1.webp',
       images: [
@@ -374,13 +389,13 @@ export const products = {
         '/products/Perfumes/100ml/Rimas/2.webp',
         '/products/Perfumes/100ml/Rimas/3.webp'
       ]
-    },    {
+    }, {
       id: 'p12-60',
       name: 'ريماس',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'عطر مشرق يجمع بين العود الدافئ، العنبر الذهبي، والزهور الشرقية، مع لمسات من المسك الفاخر',
       image: '/products/Perfumes/60ml/Rimas/1.webp',
       images: [
@@ -392,10 +407,10 @@ export const products = {
     {
       id: 'p13-100',
       name: 'شموخ',
-      price: 49.90,
+      price: 34.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'عطر شرقي فاخر يجمع بين عبق البخور العثماني الأصيل ولمسات من العود والتوابل الدافئة',
       image: '/products/Perfumes/100ml/Shomoukh/1.webp',
       images: [
@@ -403,13 +418,13 @@ export const products = {
         '/products/Perfumes/100ml/Shomoukh/2.webp',
         '/products/Perfumes/100ml/Shomoukh/3.webp'
       ]
-    },    {
+    }, {
       id: 'p13-60',
       name: 'شموخ',
       price: 18.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'عطر شرقي فاخر يجمع بين عبق البخور العثماني الأصيل ولمسات من العود والتوابل الدافئة',
       image: '/products/Perfumes/60ml/Shomoukh/1.webp',
       images: [
@@ -421,10 +436,10 @@ export const products = {
     {
       id: 'p14-100',
       name: 'روح',
-      price: 49.90,
+      price: 34.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'زيت عطري مركز بمزيج غني من النفحات الشرقية الدافئة، يجمع بين عبق العود والفانيليا مع لمسات زهرية ناعمة',
       image: '/products/Perfumes/100ml/Rouh/1.webp',
       images: [
@@ -432,13 +447,13 @@ export const products = {
         '/products/Perfumes/100ml/Rouh/2.webp',
         '/products/Perfumes/100ml/Rouh/3.webp'
       ]
-    },    {
+    }, {
       id: 'p14-60',
       name: 'روح',
       price: 19.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'زيت عطري مركز بمزيج غني من النفحات الشرقية الدافئة، يجمع بين عبق العود والفانيليا مع لمسات زهرية ناعمة',
       image: '/products/Perfumes/60ml/Rouh/1.webp',
       images: [
@@ -450,10 +465,10 @@ export const products = {
     {
       id: 'p15-100',
       name: 'لؤلؤة',
-      price: 49.90,
+      price: 44.90,
       category: 'perfumes',
       subcategory: '100ml',
-
+      gender: 'unisex',
       description: 'تناغم فريد بين العبق والأناقة، ينسج من نوتات العود والعنبر سحرًا يدوم',
       image: '/products/Perfumes/100ml/Luluah/1.webp',
       images: [
@@ -461,13 +476,13 @@ export const products = {
         '/products/Perfumes/100ml/Luluah/2.webp',
         '/products/Perfumes/100ml/Luluah/3.webp'
       ]
-    },    {
+    }, {
       id: 'p15-60',
       name: 'لؤلؤة',
       price: 24.99,
       category: 'perfumes',
       subcategory: '60ml',
-
+      gender: 'unisex',
       description: 'تناغم فريد بين العبق والأناقة، ينسج من نوتات العود والعنبر سحرًا يدوم',
       image: '/products/Perfumes/60ml/Luluah/1.webp',
       images: [
@@ -482,7 +497,7 @@ export const products = {
     {
       id: 'wp1',
       name: 'فانيلا',
-      price: 19.90,
+      price: 7.99,
       category: 'water-perfumes',
       description: 'عطر مائي منعش بنفحات الفانيليا الناعمة',
       image: '/products/Water perfumes/Vanilla/1.webp',
@@ -495,7 +510,7 @@ export const products = {
     {
       id: 'wp2',
       name: 'عود',
-      price: 19.90,
+      price: 7.99,
       category: 'water-perfumes',
       description: 'عطر مائي بنفحات العود الأصيلة',
       image: '/products/Water perfumes/Oud/1.webp',
@@ -508,7 +523,7 @@ export const products = {
     {
       id: 'wp3',
       name: 'عنبر',
-      price: 19.90,
+      price: 7.99,
       category: 'water-perfumes',
       description: 'عطر مائي بنفحات العنبر الدافئة',
       image: '/products/Water perfumes/Amber/1.webp',
@@ -521,7 +536,7 @@ export const products = {
     {
       id: 'wp4',
       name: 'مسك',
-      price: 19.90,
+      price: 7.99,
       category: 'water-perfumes',
       description: 'عطر مائي برائحة المسك النقية',
       image: '/products/Water perfumes/Musk/1.webp',
@@ -538,8 +553,9 @@ export const products = {
       name: 'عبير',
       price: 14.99,
       category: 'oils',
+      gender: 'men',
       description: 'عطر داكن ومكثف يجمع بين التبغ، العود، والقهوة، بلمسة شرقية غامضة تدوم طويلًا.',
-      image: '/products/Oils/Abeer/1.webp',
+      image: '/products/Oils/Abeer/2.webp',
       images: [
         '/products/Oils/Abeer/1.webp',
         '/products/Oils/Abeer/2.webp',
@@ -549,8 +565,9 @@ export const products = {
     {
       id: 'o1',
       name: 'مسك أحمر',
-      price: 9.90,
+      price: 11.90,
       category: 'oils',
+      gender: 'women',
       description: 'نفحات مسكية دافئة ممزوجة بالفانيليا والعنبر، تمنح ثباتًا رائعًا',
       image: '/products/Oils/Misk Ahmar/1.webp',
       images: [
@@ -562,8 +579,9 @@ export const products = {
     {
       id: 'o2',
       name: 'مسك أسود',
-      price: 9.90,
+      price: 11.90,
       category: 'oils',
+      gender: 'women',
       description: 'عطر شرقي مكثف من المسك الداكن، غني بالأخشاب والتوابل الجذابة',
       image: '/products/Oils/Misk Aswad/1.webp',
       images: [
@@ -575,8 +593,9 @@ export const products = {
     {
       id: 'o3',
       name: 'مسك عسلي',
-      price: 9.90,
+      price: 14.99,
       category: 'oils',
+      gender: 'women',
       description: 'لمسة حلوة من المسك الممزوج بالعسل، تضفي نعومة ودفئًا مغريًا',
       image: '/products/Oils/Misk Asali/1.webp',
       images: [
@@ -588,8 +607,9 @@ export const products = {
     {
       id: 'o4',
       name: 'مسك كرزي',
-      price: 9.99,
+      price: 19.99,
       category: 'oils',
+      gender: 'women',
       description: 'مزيج ساحر من المسك والكرز الأحمر، برائحة فاكهية مغرية',
       image: '/products/Oils/Misk Karzi/1.webp',
       images: [
@@ -601,8 +621,9 @@ export const products = {
     {
       id: 'o20',
       name: 'مسك روز',
-      price: 8.99,
+      price: 14.99,
       category: 'oils',
+      gender: 'women',
       description: 'نفحات نقية من المسك الوردي، تمنح إحساسًا ناعمًا وطهارة عطرية',
       image: '/products/Oils/Misk Rose/1.webp',
       images: [
@@ -614,8 +635,9 @@ export const products = {
     {
       id: 'o21',
       name: 'مسك عنبري',
-      price: 9.90,
+      price: 14.99,
       category: 'oils',
+      gender: 'women',
       description: 'مسك شرقي غني ممزوج بالعنبر الدافئ، لمسة فاخرة تدوم طويلًا',
       image: '/products/Oils/Misk Anbari/1.webp',
       images: [
@@ -629,6 +651,7 @@ export const products = {
       name: 'ربيع',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'عطر ذكوري قوي من العنبر والتونكا والفلفل، يمنح طاقة وثقة',
       image: '/products/Oils/Rabee/1.webp',
       images: [
@@ -642,6 +665,7 @@ export const products = {
       name: 'روح',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'زيت عطري شرقي مكثف، يجمع بين العود والزهور والمسك في مزيج آسر',
       image: '/products/Oils/Rouh/1.webp',
       images: [
@@ -653,8 +677,9 @@ export const products = {
     {
       id: 'o7',
       name: 'شذا',
-      price: 9.90,
+      price: 14.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'عطر فانيليا دافئ ممزوج بالعنبر والسكر البني، لمسة حلوة وجذابة',
       image: '/products/Oils/Shatha/1.webp',
       images: [
@@ -666,8 +691,9 @@ export const products = {
     {
       id: 'o8',
       name: 'درر',
-      price: 9.90,
+      price: 11.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'نفحات زهرية ناعمة من زهور التوليب، برائحة أنثوية حالمة',
       image: '/products/Oils/Durar/1.webp',
       images: [
@@ -679,8 +705,9 @@ export const products = {
     {
       id: 'o9',
       name: 'مسك سيلك',
-      price: 9.90,
+      price: 11.90,
       category: 'oils',
+      gender: 'unisex',
       description: 'مسك ناعم ومخملي بلمسات بودرية، يمنح إحساسًا راقيًا وأنيقًا',
       image: '/products/Oils/Misk Silk/1.webp',
       images: [
@@ -694,6 +721,7 @@ export const products = {
       name: 'إشراقة',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'فانيليا فاخرة ممزوجة بالأخشاب والبلسم، لمسة راقية وحسية',
       image: '/products/Oils/Ishraqah/1.webp',
       images: [
@@ -707,6 +735,7 @@ export const products = {
       name: 'بريق',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'عطر شرقي فاخر يجمع بين العسل، التبغ، والفانيليا، بلمسة دافئة ومغرية',
       image: '/products/Oils/Bareeq/1.webp',
       images: [
@@ -720,6 +749,7 @@ export const products = {
       name: 'لؤلؤة',
       price: 9.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'مزيج متوازن من العود والعنبر برائحة شرقية أنيقة وثابتة',
       image: '/products/Oils/Luluah/1.webp',
       images: [
@@ -731,8 +761,10 @@ export const products = {
     {
       id: 'o25',
       name: 'مسك رماني',
-      price: 9.90,
+      price: 14.99
+      ,
       category: 'oils',
+      gender: 'women',
       description: 'عطر فاكهي يجمع بين المسك والرمان، لمسة حلوة ومنعشة',
       image: '/products/Oils/Misk Roman/1.webp',
       images: [
@@ -746,6 +778,7 @@ export const products = {
       name: 'المسك الأبيض',
       price: 9.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'نفحات نظيفة ونقية من المسك الأبيض، تعكس الأنوثة والانتعاش',
       image: '/products/Oils/Al-Misk Al-Abyad/1.webp',
       images: [
@@ -759,6 +792,7 @@ export const products = {
       name: 'ماسة',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'عطر زهري مفعم بالمسك والورد، يمنح أنوثة ورقيًا لا يُقاوم',
       image: '/products/Oils/Masa/1.webp',
       images: [
@@ -770,8 +804,9 @@ export const products = {
     {
       id: 'o28',
       name: 'سلطان',
-      price: 9.90,
+      price: 34.99,
       category: 'oils',
+      gender: 'men',
       description: 'عطر ملكي من العود الكمبودي النقي، ذو حضور فخم وثبات عالٍ',
       image: '/products/Oils/Sultan/1.webp',
       images: [
@@ -783,8 +818,9 @@ export const products = {
     {
       id: 'o29',
       name: 'مجد',
-      price: 9.90,
+      price: 14.99,
       category: 'oils',
+      gender: 'men',
       description: 'نفحات عود كمبودي نقي ودخاني، بلمسة خشبية عميقة تعكس الفخامة الأصيلة',
       image: '/products/Oils/Majd/1.webp',
       images: [
@@ -798,6 +834,7 @@ export const products = {
       name: 'وهج',
       price: 8.99,
       category: 'oils',
+      gender: 'unisex',
       description: 'عطر شرقي فاخر يجمع بين عبق العود ونفحات المسك الأبيض، مع لمسات من العنبر الدافئ',
       image: '/products/Oils/Wahaj/1.webp',
       images: [
@@ -813,7 +850,7 @@ export const products = {
       name: 'شامبو مسك وعود',
       price: 3.99,
       category: 'skin-care',
-      description: 'شامبو فاخر بخلاصة الصبار والفيتامينات، يمنح شعرك ترطيبًا وتغذية مع رائحة فاخرة من المسك والعود تدوم طويلًا.',
+      description: 'شامبو فاخر معطر بالمسك والعود، غني بخلاصة الصبار والفيتامينات، يمنح شعرك نظافة وترطيبًا مع رائحة شرقية تدوم طويلاً',
       image: '/products/Skin Care/Hair Shampoo/1.webp',
       images: [
         '/products/Skin Care/Hair Shampoo/1.webp',
@@ -826,7 +863,7 @@ export const products = {
       name: 'شاور جيل',
       price: 3.99,
       category: 'skin-care',
-      description: 'امنح بشرتك انتعاشًا فاخرًا مع شاور جيل غني بخلاصة الفواكه، يمنحك ترطيبًا لطيفًا وتنظيفًا منعشًا، مع عبق جذاب من المسك والعود يدوم طويلاً.',
+      description: 'جل استحمام منعش بخلاصة الزيوت العطرية الطبيعية، يمنح بشرتك نظافة وترطيبًا مع رائحة المسك والعود المميزة',
       image: '/products/Skin Care/Shower Gel/1.webp',
       images: [
         '/products/Skin Care/Shower Gel/1.webp',
@@ -839,7 +876,7 @@ export const products = {
       name: 'مزيل عرق',
       price: 0.99,
       category: 'skin-care',
-      description: 'امنح بشرتك انتعاشًا فاخرًا مع شاور جيل غني بخلاصة الفواكه، يمنحك ترطيبًا لطيفًا وتنظيفًا منعشًا، مع عبق جذاب من المسك والعود يدوم طويلاً.',
+      description: 'مزيل عرق فعال بتركيبة مميزة تدوم طويلاً، برائحة المسك والعود الفاخرة، يمنحك الثقة والانتعاش طوال اليوم',
       image: '/products/Skin Care/Deodorant/1.webp',
       images: [
         '/products/Skin Care/Deodorant/1.webp',
@@ -852,7 +889,7 @@ export const products = {
       name: 'أنسام',
       price: 3.99,
       category: 'skin-care',
-      description: 'امنح بشرتك انتعاشًا فاخرًا مع شاور جيل غني بخلاصة الفواكه، يمنحك ترطيبًا لطيفًا وتنظيفًا منعشًا، مع عبق جذاب من المسك والعود يدوم طويلاً.',
+      description: 'معطر للجسم برائحة زهرية منعشة، يمنح بشرتك إحساساً بالنظافة والانتعاش مع عبير يدوم طويلاً',
       image: '/products/Skin Care/Ansam/1.webp',
       images: [
         '/products/Skin Care/Ansam/1.webp',
@@ -865,7 +902,7 @@ export const products = {
       name: 'ريحان',
       price: 3.99,
       category: 'skin-care',
-      description: 'مرطب جسم فاخر بخلاصة زيت الجوجوبا وزيت جوز الهند، يمنح بشرتك ترطيبًا عميقًا وتغذية متكاملة، مع لمسة عطرية غنية برائحة المسك والعود تدوم طويلًا.',
+      description: 'معطر للجسم بخلاصة الريحان المنعشة، يترك على بشرتك رائحة عطرية خفيفة ومنعشة تدوم طويلاً',
       image: '/products/Skin Care/Rayhan/1.webp',
       images: [
         '/products/Skin Care/Rayhan/1.webp',
@@ -875,10 +912,10 @@ export const products = {
     },
     {
       id: 'sc6',
-      name: 'ًصابونة مسك وعود',
+      name: 'صابونة مسك وعود',
       price: 0.99,
       category: 'skin-care',
-      description: 'مرطب جسم فاخر بخلاصة زيت الجوجوبا وزيت جوز الهند، يمنح بشرتك ترطيبًا عميقًا وتغذية متكاملة، مع لمسة عطرية غنية برائحة المسك والعود تدوم طويلًا.',
+      description: 'صابون فاخر بخلاصة المسك والعود، غني بالزيوت الطبيعية المرطبة للبشرة، يمنح نظافة عميقة مع رائحة شرقية أصيلة',
       image: '/products/Skin Care/Oud Soap/1.webp',
       images: [
         '/products/Skin Care/Oud Soap/1.webp',
@@ -886,12 +923,11 @@ export const products = {
         '/products/Skin Care/Oud Soap/3.webp'
       ]
     },
-    // ... add other skin care products
   ],
   roomSpray: [
     {
       id: 'rs1',
-      name: 'هورات',
+      name: 'هرات',
       price: 3.90,
       category: 'room-spray',
       description: 'معطر غرفة منعش بنفحات الورد والياسمين',
@@ -917,7 +953,7 @@ export const products = {
     },
     {
       id: 'rs3',
-      name: 'زابول',
+      name: 'زابل',
       price: 3.90,
       category: 'room-spray',
       description: 'معطر غرفة فاخر بنفحات العود والعنبر',
@@ -1027,7 +1063,7 @@ export const products = {
   ], electricDiffuser: [
     {
       id: 'rd1',
-      name: 'سما',
+      name: 'معطر كهربائي ',
       price: 24.90,
       category: 'electric-diffuser',
       description: 'معطر كهربائي بنفحات العود والمسك',

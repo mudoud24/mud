@@ -5,42 +5,42 @@ const categories = [
   {
     id: 'perfumes',
     name: 'العطور',
-    image: '/products/Perfumes/100ml/Abeer/1.webp'
+    image: '/products/Perfumes/100ml/Abeer/3.webp'
   },
   {
     id: 'oils',
     name: 'الزيوت',
-    image: '/products/Oils/Misk Karzi/1.webp'
+    image: '/products/Oils/Misk Karzi/2.webp'
   },
   {
     id: 'incense',
     name: 'معطرات اعواد',
-    image: '/products/Reed Diffuser/Sama/1.webp'
+    image: '/products/Reed Diffuser/Sama/1-home.webp'
   },
   {
     id: 'room-spray',
     name: 'معطرات الغرفة',
-    image: '/products/Room Spray/kholoud/1.webp'
+    image: '/products/Room Spray/Magic/3.webp'
   },
   {
     id: 'car-perfumes',
     name: 'معطرات السيارات',
-    image: '/products/Car Perfume/Abq/1.webp'
+    image: '/products/Car Perfume/Abq/1-home.webp'
   },
-  {
-    id: 'skin-care',
-    name: 'العناية بالبشرة',
-    image: '/products/Skin Care/Hair Shampoo/1.webp'
-  },
+
   {
     id: 'body-mist',
     name: 'معطر الجسم',
-    image: '/products/Skin Care/Ansam/1.webp'
+    image: '/products/Skin Care/Ansam/1-home.webp'
   },
   {
     id: 'electric-diffuser',
     name: 'المعطرات الكهربائية',
-    image: '/products/Electric Diffuser/Volcano/1.webp'
+    image: '/products/Electric Diffuser/Volcano/2.webp'
+  } , {
+    id: 'skin-care',
+    name: 'العناية بالبشرة',
+    image: '/products/Skin Care/Hair Shampoo/4.webp'
   }
 ]
 

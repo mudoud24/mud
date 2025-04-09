@@ -5,6 +5,7 @@ import { FaHeart } from 'react-icons/fa'
 import { formatCurrency } from '../utils/currency'
 import Image from 'next/image'
 import ImageViewer from './ImageViewer'
+import { getGenderLabel } from '@/data/products'
 
 type ProductCardProps = {
   id: string
@@ -17,6 +18,7 @@ type ProductCardProps = {
   subcategory?: string
   discount?: number
   originalPrice?: number
+  gender?: 'men' | 'women' | 'unisex'
 }
 
 const ProductCard = ({ 
@@ -29,17 +31,17 @@ const ProductCard = ({
   category,
   subcategory,
   discount = 0,
-  originalPrice
+  originalPrice,
+  gender
 }: ProductCardProps) => {
   const [isLiked, setIsLiked] = useState(false)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
 
   const handleLikeClick = (e: React.MouseEvent) => {
-    e.stopPropagation() // Prevent opening the viewer when clicking like button
+    e.stopPropagation()
     setIsLiked(!isLiked)
   }
 
-  // Update the image path generation
   const productImages = images.length > 0 ? images : [
     image.replace('.webp', '/1.webp'),
     image.replace('.webp', '/2.webp'),
@@ -48,16 +50,11 @@ const ProductCard = ({
 
   return (
     <>
-      <div 
-        className={`group relative rounded-lg overflow-hidden transition-colors duration-300 ${
-          isLiked ? 'bg-red-50' : 'bg-white'
-        }`}
-      >
-        {/* Image Container */}
-        <div 
-          className="relative aspect-square cursor-pointer"
-          onClick={() => setIsViewerOpen(true)}
-        >
+      <div className={`group relative rounded-lg overflow-hidden transition-colors duration-300 ${
+        isLiked ? 'bg-red-50' : 'bg-white'
+      }`}>
+        <div className="relative aspect-square cursor-pointer"
+             onClick={() => setIsViewerOpen(true)}>
           <Image
             src={image}
             alt={name}
@@ -74,12 +71,22 @@ const ProductCard = ({
             </span>
           )}
 
-          {/* Subcategory Badge */}
-          {subcategory && ['60ml', '100ml'].includes(subcategory) && (
-            <span className="absolute bottom-2 right-2 bg-black/70 text-white px-2 py-1 rounded-md text-sm">
-              {subcategory === '60ml' ? '60 مل' : '100 مل'}
-            </span>
-          )}
+          {/* Badges Container */}
+          <div className="absolute bottom-2 right-2 flex items-center gap-1">
+            {/* Volume Badge */}
+            {subcategory && ['60ml', '100ml'].includes(subcategory) && (
+              <span className="bg-black/70 text-white px-1.5 py-0.5 rounded text-xs">
+                {subcategory === '60ml' ? '60 مل' : '100 مل'}
+              </span>
+            )}
+            
+            {/* Gender Badge */}
+            {gender && (
+              <span className="bg-black/70 text-white px-1.5 py-0.5 rounded text-xs">
+                {getGenderLabel(gender)}
+              </span>
+            )}
+          </div>
 
           {/* Like Button */}
           <button 
@@ -118,7 +125,6 @@ const ProductCard = ({
         </div>
       </div>
 
-      {/* Image Viewer */}
       <ImageViewer
         images={productImages}
         isOpen={isViewerOpen}
