@@ -3,16 +3,16 @@ import ProductCard from './ProductCard'
 const bestSellers = [
   {
     id: 'bs1',
-    name: 'عبير',
-    price: 59.99,
+    name: 'نور',
+    price: 39.99,
     category: 'perfumes',
     subcategory: '100ml',
-    description: 'عطر فخم يتميز بنفحات داكنة ومركزة من العود والتبغ والأخشاب العميقة',
-    image: '/products/Perfumes/100ml/Abeer/1.webp',
+    description: 'عطر فاخر يجمع بين عبق العود الأصيل، نفحات العنبر الدافئة، ولمسات الزعفران الفاخرة',
+    image: '/products/Perfumes/100ml/Noor/1.webp',
     images: [
-      '/products/Perfumes/100ml/Abeer/1.webp',
-      '/products/Perfumes/100ml/Abeer/2.webp',
-      '/products/Perfumes/100ml/Abeer/3.webp'
+      '/products/Perfumes/100ml/Noor/1.webp',
+      '/products/Perfumes/100ml/Noor/2.webp',
+      '/products/Perfumes/100ml/Noor/3.webp'
     ]
   },
   {
