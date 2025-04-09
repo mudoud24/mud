@@ -32,9 +32,9 @@ const featuredProducts = [
     price: 29.99,
     category: 'skin-care',
     description: "مسك وعود مجموعة العناية بالبشرة",
-    image: '/products/SKare.webp',
+    image: '/products/skare.webp',
     images: [
-      '/products/SKare.webp'
+      '/products/skare.webp'
     ],
     originalPrice: 60
   }
