@@ -38,7 +38,7 @@ const categories = [
     image: '/products/Skin Care/Ansam/1.webp'
   },
   {
-    id: 'diffuser',
+    id: 'electric-diffuser',
     name: 'المعطرات الكهربائية',
     image: '/products/Electric Diffuser/Volcano/1.webp'
   }

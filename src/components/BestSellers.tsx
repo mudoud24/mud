@@ -5,25 +5,54 @@ const bestSellers = [
     id: 'bs1',
     name: 'عبير',
     price: 59.99,
-    image: '/products/Perfumes/100ml/Abeer/1.webp'
+    category: 'perfumes',
+    subcategory: '100ml',
+    description: 'عطر فخم يتميز بنفحات داكنة ومركزة من العود والتبغ والأخشاب العميقة',
+    image: '/products/Perfumes/100ml/Abeer/1.webp',
+    images: [
+      '/products/Perfumes/100ml/Abeer/1.webp',
+      '/products/Perfumes/100ml/Abeer/2.webp',
+      '/products/Perfumes/100ml/Abeer/3.webp'
+    ]
   },
   {
     id: 'bs2',
     name: 'لؤلؤة',
     price: 9.99,
-    image: '/products/Oils/Luluah/1.webp'
+    category: 'oils',
+    description: 'زيت عطري مميز بنفحات المسك والعود',
+    image: '/products/Oils/Luluah/1.webp',
+    images: [
+      '/products/Oils/Luluah/1.webp',
+      '/products/Oils/Luluah/2.webp',
+      '/products/Oils/Luluah/3.webp'
+    ]
   },
   {
     id: 'bs3',
     name: 'شامبو مسك وعود',
     price: 3.99,
-    image: '/products/Skin Care/Hair Shampoo/1.webp'
+    category: 'skin-care',
+    description: 'شامبو مطور بخلاصة المسك والعود للعناية بالشعر',
+    image: '/products/Skin Care/Hair Shampoo/1.webp',
+    images: [
+      '/products/Skin Care/Hair Shampoo/1.webp',
+      '/products/Skin Care/Hair Shampoo/2.webp',
+      '/products/Skin Care/Hair Shampoo/3.webp'
+    ]
   },
   {
     id: 'bs4',
     name: 'سما',
     price: 4.49,
-    image: '/products/Reed Diffuser/Sama/1.webp'
+    category: 'reed-diffuser',
+    description: 'معطر أعواد فاخر بنفحات العود والمسك',
+    image: '/products/Reed Diffuser/Sama/1.webp',
+    images: [
+      '/products/Reed Diffuser/Sama/1.webp',
+      '/products/Reed Diffuser/Sama/2.webp',
+      '/products/Reed Diffuser/Sama/3.webp'
+    ]
   }
 ]
 

@@ -9,7 +9,11 @@ interface Product {
   id: string
   name: string
   price: number
+  category: string  
+  subcategory?: string  
+  description?: string  
   image: string
+  images?: string[]  
   originalPrice?: number
   discount?: number
 }
@@ -34,7 +38,11 @@ const ProductList = ({ products }: ProductListProps) => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard
+            key={product.id}
+            {...product}
+            category={product.category} 
+          />
         ))}
       </div>
     </div>
