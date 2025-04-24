@@ -200,10 +200,11 @@ const ProductsPage = () => {
             تم العثور على {filteredProducts.length} منتج
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-            {filteredProducts.map(product => (
+            {filteredProducts.map((product, index) => (
               <ProductCard
                 key={product.id}
                 {...product}
+                priority={index < 6} // Only prioritize first 6 products
               />
             ))}
           </div>

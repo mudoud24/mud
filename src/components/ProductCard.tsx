@@ -19,6 +19,7 @@ type ProductCardProps = {
   discount?: number
   originalPrice?: number
   gender?: 'men' | 'women' | 'unisex'
+  priority?: boolean
 }
 
 const ProductCard = ({ 
@@ -32,7 +33,8 @@ const ProductCard = ({
   subcategory,
   discount = 0,
   originalPrice,
-  gender
+  gender,
+  priority = false
 }: ProductCardProps) => {
   const [isLiked, setIsLiked] = useState(false)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
@@ -59,9 +61,13 @@ const ProductCard = ({
             src={image}
             alt={name}
             fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
-            priority
+            priority={priority}
+            loading={priority ? 'eager' : 'lazy'}
+            quality={75} // Reduce quality slightly for better performance
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+            placeholder="blur"
           />
           
           {/* Discount Badge */}
@@ -136,5 +142,24 @@ const ProductCard = ({
     </>
   )
 }
+
+// Shimmer effect helper functions
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#eee" offset="20%" />
+      <stop stop-color="#f5f5f5" offset="50%" />
+      <stop stop-color="#eee" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#eee" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+</svg>`
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
 
 export default ProductCard
