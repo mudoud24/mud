@@ -20,6 +20,8 @@ type ProductCardProps = {
   originalPrice?: number
   gender?: 'men' | 'women' | 'unisex'
   priority?: boolean
+  sizes?: string
+  className?: string
 }
 
 const ProductCard = ({ 
@@ -34,7 +36,9 @@ const ProductCard = ({
   discount = 0,
   originalPrice,
   gender,
-  priority = false
+  priority = false,
+  sizes = '100vw',
+  className = ''
 }: ProductCardProps) => {
   const [isLiked, setIsLiked] = useState(false)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
@@ -55,19 +59,19 @@ const ProductCard = ({
       <div className={`group relative rounded-lg overflow-hidden transition-colors duration-300 ${
         isLiked ? 'bg-red-50' : 'bg-white'
       }`}>
-        <div className="relative aspect-square cursor-pointer"
+        <div className={`relative cursor-pointer ${className}`}
              onClick={() => setIsViewerOpen(true)}>
           <Image
             src={image}
             alt={name}
             fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes={sizes}
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             priority={priority}
             loading={priority ? 'eager' : 'lazy'}
-            quality={75} // Reduce quality slightly for better performance
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+            quality={75}
             placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
           />
           
           {/* Discount Badge */}
@@ -130,7 +134,7 @@ const ProductCard = ({
           )}
         </div>
       </div>
-
+      
       <ImageViewer
         images={productImages}
         isOpen={isViewerOpen}
@@ -143,7 +147,7 @@ const ProductCard = ({
   )
 }
 
-// Shimmer effect helper functions
+// Add shimmer effect helpers
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>

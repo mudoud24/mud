@@ -204,7 +204,11 @@ const ProductsPage = () => {
               <ProductCard
                 key={product.id}
                 {...product}
-                priority={index < 6} // Only prioritize first 6 products
+                priority={index < 4} // Reduce to first 4 products
+                sizes={`(max-width: 640px) 50vw, 
+                        (max-width: 1024px) 33vw,
+                        25vw`}
+                className="aspect-square" // Force aspect ratio
               />
             ))}
           </div>
