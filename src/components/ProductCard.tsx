@@ -48,18 +48,23 @@ const ProductCard = ({
     setIsLiked(!isLiked)
   }
 
-  const productImages = images.length > 0 ? images : [
-    image.replace('.webp', '/1.webp'),
-    image.replace('.webp', '/2.webp'),
-    image.replace('.webp', '/3.webp')
-  ]
+  // Update productImages logic to handle both array and single image cases
+  const productImages = images?.length > 0 
+    ? images 
+    : image.includes('/1.webp') || image.includes('/2.webp') || image.includes('/3.webp')
+    ? [
+        image.replace('/1.webp', '/1.webp'),
+        image.replace('/1.webp', '/2.webp'),
+        image.replace('/1.webp', '/3.webp')
+      ]
+    : [image];
 
   return (
     <>
       <div className={`group relative rounded-lg overflow-hidden transition-colors duration-300 ${
         isLiked ? 'bg-red-50' : 'bg-white'
       }`}>
-        <div className={`relative cursor-pointer ${className}`}
+        <div className={`relative cursor-pointer ${className || 'aspect-square'}`}
              onClick={() => setIsViewerOpen(true)}>
           <Image
             src={image}
@@ -117,16 +122,7 @@ const ProductCard = ({
         {/* Product Info */}
         <div className="p-4">
           <h3 className="font-bold text-lg mb-2 line-clamp-2">{name}</h3>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold text-mud-primary">
-              {formatCurrency(price)}
-            </span>
-            {originalPrice && originalPrice > price && (
-              <span className="text-sm text-gray-500 line-through">
-                {formatCurrency(originalPrice)}
-              </span>
-            )}
-          </div>
+          {/* Price section temporarily hidden */}
           {description && (
             <p className="text-gray-600 text-sm mt-2 line-clamp-2">
               {description}

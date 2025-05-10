@@ -923,6 +923,45 @@ export const products = {
         '/products/Skin Care/Oud Soap/3.webp'
       ]
     },
+    {
+      id: 'sc7',
+      name: 'لوشن مرطب الجسم',
+      price: 4.99,
+      category: 'skin-care',
+      description: 'لوشن مرطب للجسم بخلاصة المسك والعود، يمنح البشرة نعومة ورائحة عطرية تدوم طويلاً',
+      image: '/products/Skin Care/Body Lotion/1.webp',
+      images: [
+        '/products/Skin Care/Body Lotion/1.webp',
+        '/products/Skin Care/Body Lotion/2.webp',
+        '/products/Skin Care/Body Lotion/3.webp'
+      ]
+    },
+    {
+      id: 'sc8',
+      name: 'غسول الوجه',
+      price: 5.99,
+      category: 'skin-care',
+      description: 'غسول لطيف للوجه يحتوي على مستخلصات طبيعية للتنظيف العميق وترطيب البشرة',
+      image: '/products/Skin Care/Facial Wash/1.webp',
+      images: [
+        '/products/Skin Care/Facial Wash/1.webp',
+        '/products/Skin Care/Facial Wash/2.webp',
+        '/products/Skin Care/Facial Wash/3.webp'
+      ]
+    },
+    {
+      id: 'sc9',
+      name: 'سيروم الشعر',
+      price: 6.99,
+      category: 'skin-care',
+      description: 'سيروم مغذي للشعر بخلاصة الأرغان والكيراتين، يمنح الشعر لمعاناً وقوة ويحميه من التقصف',
+      image: '/products/Skin Care/Hair Serum/1.webp',
+      images: [
+        '/products/Skin Care/Hair Serum/1.webp',
+        '/products/Skin Care/Hair Serum/2.webp',
+        '/products/Skin Care/Hair Serum/2.webp'
+      ]
+    }
   ],
   roomSpray: [
     {
@@ -970,11 +1009,11 @@ export const products = {
       price: 3.99,
       category: 'room-spray',
       description: 'معطر غرفة فاخر بنفحات العود والعنبر',
-      image: '/products/Room Spray/kholoud/1.webp',
+      image: '/products/Room Spray/Kholoud/1.webp',
       images: [
-        '/products/Room Spray/kholoud/1.webp',
-        '/products/Room Spray/kholoud/2.webp',
-        '/products/Room Spray/kholoud/3.webp'
+        '/products/Room Spray/Kholoud/1.webp',
+        '/products/Room Spray/Kholoud/2.webp',
+        '/products/Room Spray/Kholoud/3.webp'
       ]
     }
   ],

@@ -12,13 +12,14 @@ const AboutSection = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          className="relative h-[200px] md:h-[500px] rounded-lg overflow-hidden"
+          className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden" // Changed from h-[200px] to h-[400px]
         >
           <Image
             src="/aboutImage.png"
             alt="About MUD"
             fill
             className="object-cover rounded-lg"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </motion.div>
 
