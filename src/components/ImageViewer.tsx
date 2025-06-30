@@ -95,9 +95,9 @@ const ImageViewer = ({
 
         <div className="text-white md:w-1/3 text-right">
           <h2 className="text-2xl font-bold mb-4">{productName}</h2>
-          {price && (
+{/*           {price && (
             <p className="text-xl text-mud-primary mb-4">{formatCurrency(price)}</p>
-          )}
+          )} */}
           <p className="text-gray-300 leading-relaxed mb-6">{description}</p>
           
           {images.length > 1 && (
